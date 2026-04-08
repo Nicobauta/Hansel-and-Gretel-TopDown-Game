@@ -9,15 +9,13 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     private Rigidbody2D _rb;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         PlayerStats.score = 0;
         _newInput = GetComponent<NewInput>();
         _rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         Movement();
@@ -25,7 +23,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void Movement()
     {
-        //transform.Translate(Vector3.right * speed * _newInput.inputX * Time.deltaTime);
-        _rb.velocity = new Vector2(_newInput.inputX * speed, _rb.velocity.y);
+        _rb.velocity = _newInput.movement * speed;
     }
 }

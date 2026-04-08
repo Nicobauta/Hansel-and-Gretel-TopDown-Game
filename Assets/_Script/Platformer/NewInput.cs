@@ -6,7 +6,7 @@ public class NewInput : MonoBehaviour
 {
     // Se declaran las variables
     private PlayerInput playerInput;
-    [HideInInspector] public float inputX;
+    [HideInInspector] public Vector2 movement;
 
     private PlayerJump _playerJump;
 
@@ -21,13 +21,13 @@ public class NewInput : MonoBehaviour
     // Cada frame
     private void Update()
     {
-        // Se llama al método para que funcione
+        // Se llama al mï¿½todo para que funcione
         GetInput();
     }
 
     public void JumpAction(InputAction.CallbackContext context)
     {
-        // Tres momentos: cuando se presiona, cuando se está presionando y cuando se deja de presionar
+        // Tres momentos: cuando se presiona, cuando se estï¿½ presionando y cuando se deja de presionar
         if (context.started)
         {
             _playerJump.Jump();
@@ -37,13 +37,6 @@ public class NewInput : MonoBehaviour
   
     public void GetInput()
     {
-        // Almacena en la variable el varlor del axis del archvio de PlayerActions
-        inputX = playerInput.actions["Move"].ReadValue<float>();
-
-        // Forma con concatenación
-       // Debug.Log("Movimiento: " + inputX);
-
-        // Forma con formato
-       // Debug.Log(string.Format("Movimiento: {0}", inputX));
+        movement = playerInput.actions["Move"].ReadValue<Vector2>();
     }
 }

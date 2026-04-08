@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -11,7 +12,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - up
   - 
   - 
   - 
@@ -40,4 +41,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Suelo
+    uniqueID: 3376188629
+    locked: 0
+  - name: CaminarFrente
+    uniqueID: 971377583
+    locked: 0
+  - name: Colision
+    uniqueID: 3102334579
+    locked: 0
+  - name: Player
+    uniqueID: 978215111
+    locked: 0
+  - name: CaminarDetras
+    uniqueID: 4028909787
     locked: 0

@@ -23,11 +23,11 @@ public class PlayerAnimation : MonoBehaviour
 
     public void PlayerMoveAnim()
     {
-        _animator.SetBool("isMoving", _newInput.inputX != 0);
+        Vector2 move = _newInput.movement;
 
-        //if(_newInput.inputX != 0)
-        //    _animator.SetBool("isMoving", true);
-        //else
-         //   _animator.SetBool("isMoving", false);
+        _animator.SetBool("isMoving", move != Vector2.zero);
+
+        _animator.SetFloat("moveX", move.x);
+        _animator.SetFloat("moveY", move.y);
     }
 }
