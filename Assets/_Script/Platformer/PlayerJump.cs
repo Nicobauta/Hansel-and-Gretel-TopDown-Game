@@ -1,24 +1,54 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerJump : MonoBehaviour
 {
-    private Rigidbody2D _rb;
+    public float jumpDistance = 1f;   // tamaño del tile
+    public float jumpSpeed = 8f;
 
-    public float jumpForce;
-    // Start is called before the first frame update
-    void Start()
+    private bool isJumping = false;
+    private Vector2 targetPosition;
+
+    private NewInput _input;
+
+    void Awake()
     {
-        _rb = GetComponent<Rigidbody2D>();
+        _input = GetComponent<NewInput>();
+    }
+
+    void Update()
+    {
+        // Movimiento hacia el destino
+        if (isJumping)
+        {
+            transform.position = Vector2.MoveTowards(
+                transform.position,
+                targetPosition,
+                jumpSpeed * Time.deltaTime
+            );
+
+            if (Vector2.Distance(transform.position, targetPosition) < 0.01f)
+            {
+                transform.position = targetPosition;
+                isJumping = false;
+            }
+        }
     }
 
     public void Jump()
     {
-        if(Mathf.Abs(_rb.velocity.y) < 0.01)
-            _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        if (isJumping) return;
 
+        Vector2 direction = _input.movement;
+
+        // Evitar diagonales (solo 4 direcciones)
+        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+            direction = new Vector2(Mathf.Sign(direction.x), 0);
+        else
+            direction = new Vector2(0, Mathf.Sign(direction.y));
+
+        if (direction == Vector2.zero) return;
+
+        targetPosition = (Vector2)transform.position + direction * jumpDistance;
+        isJumping = true;
     }
-
-   
 }
