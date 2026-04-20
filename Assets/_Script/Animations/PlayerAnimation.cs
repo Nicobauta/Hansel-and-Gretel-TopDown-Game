@@ -24,10 +24,16 @@ public class PlayerAnimation : MonoBehaviour
     public void PlayerMoveAnim()
     {
         Vector2 move = _newInput.movement;
+        bool isMoving = move != Vector2.zero;
 
-        _animator.SetBool("isMoving", move != Vector2.zero);
+        _animator.SetBool("isMoving", isMoving);
 
-        _animator.SetFloat("moveX", move.x);
-        _animator.SetFloat("moveY", move.y);
+        // Only update the direction floats if we are actually moving.
+        // This ensures the Animator remembers the last faced direction when stopping.
+        if (isMoving)
+        {
+            _animator.SetFloat("moveX", move.x);
+            _animator.SetFloat("moveY", move.y);
+        }
     }
 }
