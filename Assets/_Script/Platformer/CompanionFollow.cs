@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-
 using UnityEngine;
 
 public class CompanionFollow : MonoBehaviour
@@ -13,10 +12,17 @@ public class CompanionFollow : MonoBehaviour
     public float followDistance = 0.3f;
 
     private Rigidbody2D _rb;
+    private Animator _animator;
+
+    // Para evitar errores si no hay Animator
+    private bool hasAnimator;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+
+        _animator = GetComponent<Animator>();
+        hasAnimator = _animator != null;
     }
 
     private void FixedUpdate()
@@ -30,10 +36,24 @@ public class CompanionFollow : MonoBehaviour
 
         float distance = Vector2.Distance(transform.position, player.position);
 
-        // Solo se mueve si está lejos del jugador
-        if (distance > followDistance)
+        bool isMoving = distance > followDistance;
+
+        // Solo si existe Animator
+        if (hasAnimator)
+        {
+            _animator.SetBool("isMoving", isMoving);
+        }
+
+        if (isMoving)
         {
             Vector2 direction = (player.position - transform.position).normalized;
+
+            // Actualizamos animación solo si existe
+            if (hasAnimator)
+            {
+                _animator.SetFloat("moveX", direction.x);
+                _animator.SetFloat("moveY", direction.y);
+            }
 
             Vector2 targetPosition = (Vector2)player.position - direction * followDistance;
 
@@ -45,7 +65,6 @@ public class CompanionFollow : MonoBehaviour
         }
         else
         {
-            // Se queda quieto
             _rb.velocity = Vector2.zero;
         }
     }
