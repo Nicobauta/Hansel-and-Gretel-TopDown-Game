@@ -5,6 +5,11 @@ public class MenuPrincipal : MonoBehaviour
 {
     public void NuevoJuego()
     {
-        SceneManager.LoadScene("Nivel1");
+        SceneManager.LoadScene("TransicionMenu");
+    }
+    public void Salir()
+    {
+        Debug.Log("Saliendo del juego...");
+        Application.Quit();
     }
 }

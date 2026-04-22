@@ -1,48 +1,54 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
 
-    public AudioSource bgAudioSource;
-    public AudioSource sfxAudioSource;
+    [Header("Audio Sources")]
+    public AudioSource musicSource;
+    public AudioSource sfxSource;
 
-    public AudioClip jump;
-    public AudioClip pick;
+    [Header("Clips")]
+    public AudioClip backgroundMusic;
+    public AudioClip footstep;
+    public AudioClip shoot;
+    public AudioClip pickRock;
+    public AudioClip pickCandy;
+    public AudioClip chestOpen;
+    public AudioClip houseOpen;
+    public AudioClip enemyHit;
+    public AudioClip enemyDeath;
 
     void Awake()
     {
+        // Singleton
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
     }
-    // Start is called before the first frame update
+
     void Start()
     {
-        
+        PlayMusic(backgroundMusic);
     }
 
-    public void PlayJump()
+    //  Música
+    public void PlayMusic(AudioClip clip)
     {
-        PlaySound(jump);
+        musicSource.clip = clip;
+        musicSource.loop = true;
+        musicSource.Play();
     }
 
-    public void PlayPick()
+    //  Sonidos generales
+    public void PlaySFX(AudioClip clip)
     {
-        PlaySound(pick);
+        sfxSource.PlayOneShot(clip);
     }
-
-    private void PlaySound(AudioClip clip)
-    {
-        sfxAudioSource.PlayOneShot(clip);
-    }
-    
-
 }

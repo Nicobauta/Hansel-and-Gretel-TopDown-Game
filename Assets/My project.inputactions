@@ -50,6 +50,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Pausa",
+                    "type": "Button",
+                    "id": "5b1c96a5-56d3-4ed1-9a35-d27e5d128747",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -303,6 +312,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Interactuar",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ef618291-6385-4b79-ab2a-874cb9783b8d",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pausa",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
