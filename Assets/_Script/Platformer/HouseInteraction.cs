@@ -6,7 +6,6 @@ public class HouseInteraction : MonoBehaviour
     private bool playerInRange = false;
     private PlayerStats player;
 
-    public string nextLevelName = "Nivel2";
 
     private void Update()
     {
@@ -21,7 +20,7 @@ public class HouseInteraction : MonoBehaviour
         if (player != null && player.hasKey)
         {
             Debug.Log("Entrando a la casa...");
-            SceneManager.LoadScene(nextLevelName);
+            SceneManager.LoadScene("TransicionNivel1");
         }
         else
         {
