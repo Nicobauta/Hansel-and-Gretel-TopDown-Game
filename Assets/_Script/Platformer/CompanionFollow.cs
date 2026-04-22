@@ -1,4 +1,4 @@
-    using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,8 +16,6 @@ public class CompanionFollow : MonoBehaviour
     private Animator _animator; // Referencia al Animator
 =======
     private Animator _animator;
-
-    // Para evitar errores si no hay Animator
     private bool hasAnimator;
 >>>>>>> 9d1dd015bd8d3d49b4682fe3fb0ac24db5e07130
 
@@ -55,7 +53,6 @@ public class CompanionFollow : MonoBehaviour
 =======
         bool isMoving = distance > followDistance;
 
-        // Solo si existe Animator
         if (hasAnimator)
         {
             _animator.SetBool("isMoving", isMoving);
@@ -67,12 +64,15 @@ public class CompanionFollow : MonoBehaviour
             Vector2 direction = (player.position - transform.position).normalized;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             // Actualizamos la dirección en el Animator solo cuando se mueve
             // Esto asegura que recuerde su última posición (espalda, frente, etc) al detenerse
             _animator.SetFloat("moveX", direction.x);
             _animator.SetFloat("moveY", direction.y);
 =======
             // Actualizamos animación solo si existe
+=======
+>>>>>>> 92266fc2bd3e5b997902f4d3f97d7802b16b1bdd
             if (hasAnimator)
             {
                 _animator.SetFloat("moveX", direction.x);
