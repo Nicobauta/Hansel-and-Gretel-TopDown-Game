@@ -11,7 +11,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Awake()
     {
-        PlayerStats.score = 0;
+        PlayerStats player = FindObjectOfType<PlayerStats>();
+        player.AddScore(10);
         _newInput = GetComponent<NewInput>();
         _rb = GetComponent<Rigidbody2D>();
     }

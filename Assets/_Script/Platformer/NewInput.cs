@@ -7,6 +7,7 @@ public class NewInput : MonoBehaviour
     // Se declaran las variables
     private PlayerInput playerInput;
     [HideInInspector] public Vector2 movement;
+    [HideInInspector] public Vector2 lastDirection;
 
     private PlayerJump _playerJump;
 
@@ -38,5 +39,11 @@ public class NewInput : MonoBehaviour
     public void GetInput()
     {
         movement = playerInput.actions["Move"].ReadValue<Vector2>();
+
+        // Guardar última dirección SOLO si hay movimiento
+        if (movement != Vector2.zero)
+        {
+            lastDirection = movement.normalized;
+        }
     }
 }
