@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 public class CompanionFollow : MonoBehaviour
@@ -12,15 +13,12 @@ public class CompanionFollow : MonoBehaviour
     public float followDistance = 0.3f;
 
     private Rigidbody2D _rb;
-    private Animator _animator;
-    private bool hasAnimator;
+    private Animator _animator; // Referencia al Animator
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
-
-        _animator = GetComponent<Animator>();
-        hasAnimator = _animator != null;
+        _animator = GetComponent<Animator>(); // Obtenemos el Animator
     }
 
     private void FixedUpdate()
@@ -34,22 +32,23 @@ public class CompanionFollow : MonoBehaviour
 
         float distance = Vector2.Distance(transform.position, player.position);
 
+        // Determinamos si se está moviendo (si está más lejos de la distancia mínima)
         bool isMoving = distance > followDistance;
 
-        if (hasAnimator)
-        {
-            _animator.SetBool("isMoving", isMoving);
-        }
+        // Le pasamos el estado al Animator
+        _animator.SetBool("isMoving", isMoving);
+        
+        // Solo se mueve si está lejos del jugador
 
         if (isMoving)
         {
             Vector2 direction = (player.position - transform.position).normalized;
 
-            if (hasAnimator)
-            {
-                _animator.SetFloat("moveX", direction.x);
-                _animator.SetFloat("moveY", direction.y);
-            }
+            // Actualizamos la dirección en el Animator solo cuando se mueve
+            // Esto asegura que recuerde su última posición (espalda, frente, etc) al detenerse
+            _animator.SetFloat("moveX", direction.x);
+            _animator.SetFloat("moveY", direction.y);
+            
 
             Vector2 targetPosition = (Vector2)player.position - direction * followDistance;
 
@@ -61,6 +60,7 @@ public class CompanionFollow : MonoBehaviour
         }
         else
         {
+            // Se queda quieto
             _rb.velocity = Vector2.zero;
         }
     }
