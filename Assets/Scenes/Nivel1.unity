@@ -25588,6 +25588,8 @@ GameObject:
   - component: {fileID: 409024095}
   - component: {fileID: 409024101}
   - component: {fileID: 409024102}
+  - component: {fileID: 409024105}
+  - component: {fileID: 409024106}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -25838,6 +25840,39 @@ MonoBehaviour:
   rockPrefab: {fileID: 7895289784128861087, guid: 8ce67d3306588b64aa39f063d72c91b6, type: 3}
   firePoint: {fileID: 2002759604}
   shootForce: 3
+--- !u!95 &409024105
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 409024094}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f03f95c2df0ba554db5d21be34f1f8b6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &409024106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 409024094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e3501f0b548fbf40a3b4eb212db1823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &428765682
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26499,7 +26534,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3a63783ed67e2b43a2c53d0bef4e42a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextLevelName: Nivel2
 --- !u!1001 &806558815
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -121016,6 +121050,7 @@ GameObject:
   - component: {fileID: 1809619330}
   - component: {fileID: 1809619329}
   - component: {fileID: 1809619331}
+  - component: {fileID: 1809619332}
   m_Layer: 7
   m_Name: Companion
   m_TagString: Untagged
@@ -121177,6 +121212,27 @@ MonoBehaviour:
   player: {fileID: 409024098}
   speed: 3.2
   followDistance: 0.6
+--- !u!95 &1809619332
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809619326}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7e6b14f6b896a8a4f98d1b518449b53e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &1851529960 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8551474987807581923, guid: 20575dc62776bf74f82c196756a3f9cb, type: 3}

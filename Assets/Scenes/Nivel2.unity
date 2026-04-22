@@ -248,7 +248,9 @@ GameObject:
   - component: {fileID: 342394327}
   - component: {fileID: 342394331}
   - component: {fileID: 342394332}
+  - component: {fileID: 342394340}
   - component: {fileID: 342394337}
+  - component: {fileID: 342394339}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -417,7 +419,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 342394321}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 71bb8bbbc599bed4cb15c63b5fd13fc3, type: 2}
   m_CullingMode: 0
@@ -539,6 +541,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rockPrefab: {fileID: 2011954508700431092, guid: 213cc965d1e13d34aa19e289c01419a6, type: 3}
   firePoint: {fileID: 1187026700}
+--- !u!114 &342394339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 342394321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1d53f0a40418174ebaeea7213948f19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movement: {x: 0, y: 0}
+  lastDirection: {x: 0, y: 0}
+--- !u!114 &342394340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 342394321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e6e5e506d426384b98794ca9b1358b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &590544801
 GameObject:
   m_ObjectHideFlags: 0
