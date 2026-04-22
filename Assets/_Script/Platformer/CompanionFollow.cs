@@ -13,8 +13,6 @@ public class CompanionFollow : MonoBehaviour
 
     private Rigidbody2D _rb;
     private Animator _animator;
-
-    // Para evitar errores si no hay Animator
     private bool hasAnimator;
 
     private void Awake()
@@ -38,7 +36,6 @@ public class CompanionFollow : MonoBehaviour
 
         bool isMoving = distance > followDistance;
 
-        // Solo si existe Animator
         if (hasAnimator)
         {
             _animator.SetBool("isMoving", isMoving);
@@ -48,7 +45,6 @@ public class CompanionFollow : MonoBehaviour
         {
             Vector2 direction = (player.position - transform.position).normalized;
 
-            // Actualizamos animación solo si existe
             if (hasAnimator)
             {
                 _animator.SetFloat("moveX", direction.x);
