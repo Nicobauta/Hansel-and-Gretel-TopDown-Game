@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem; // Requerido para leer el PlayerInput directamente
+using UnityEngine.InputSystem; 
 
 [RequireComponent(typeof(Animator), typeof(NewInput), typeof(SpriteRenderer))]
 [RequireComponent(typeof(Rigidbody2D), typeof(PlayerInput))]
@@ -11,11 +11,10 @@ public class PlayerAnimat : MonoBehaviour
     private NewInput _input;
     private SpriteRenderer _spriteRenderer;
     private Rigidbody2D _rigidbody;
-    
-    // Nueva variable para leer la acción del teclado/control
     private PlayerInput _playerInput; 
     
-    // Awake es ideal para inicializar referencias a componentes críticos antes del Start
+    private Collider2D _collider;
+
     void Awake()
     {
         _playerInput = GetComponent<PlayerInput>();
@@ -27,9 +26,9 @@ public class PlayerAnimat : MonoBehaviour
         _input = GetComponent<NewInput>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _rigidbody = GetComponent<Rigidbody2D>();
+        _collider = GetComponent<Collider2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         PlayerMoving();
@@ -44,16 +43,28 @@ public class PlayerAnimat : MonoBehaviour
 
     public void PlayerJumping()
     {
-        // Detecta el frame exacto en el que el jugador presiona el botón configurado como "Jump" (Espacio)
-        if (_playerInput.actions["Jump"].WasPressedThisFrame())
+        // 1. Iniciamos el rayo desde la parte más BAJA del personaje, no desde el centro
+        Vector2 checkPosition = new Vector2(_collider.bounds.center.x, _collider.bounds.min.y);
+        float checkDistance = 0.1f;
+        
+        // 2. Usamos RaycastAll para obtener todo lo que tocamos
+        RaycastHit2D[] hits = Physics2D.RaycastAll(checkPosition, Vector2.down, checkDistance);
+
+        bool isJump = true; // Por defecto asumimos que estamos en el aire
+
+        // 3. Revisamos todo lo que tocó el rayo
+        foreach (RaycastHit2D hit in hits)
         {
-            // Dispara la animación de salto desde Any State. 
-            // Nota: Crea un parámetro tipo "Trigger" en tu Animator llamado "JumpTrigger".
-            _animator.SetTrigger("JumpTrigger");
+            // Si tocamos algo que NO sea nuestro propio collider, significa que pisamos suelo
+            if (hit.collider != null && hit.collider != _collider && !hit.collider.isTrigger)
+            {
+                isJump = false; // Tocamos el suelo
+                break;
+            }
         }
 
-        // Puedes conservar tu variable Float por si la necesitas para volver a Idle cuando toque el suelo
-        _animator.SetFloat("isJumping", Mathf.Abs(_rigidbody.velocity.y));
+        // 4. Enviamos el valor booleano a tu parámetro "isjumping"
+        _animator.SetBool("isjumping", isJump);
     }
 
     public void Flip()
